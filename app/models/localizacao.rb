@@ -1,2 +1,0 @@
-class Localizacao < ApplicationRecord
-end
