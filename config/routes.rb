@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     scope 'post' do
       post 'create', to:'post#create'
       patch 'update/:id', to:'post#update'
+      delete 'delete/:id' , to:'post#delete'
     end
   end
 end
