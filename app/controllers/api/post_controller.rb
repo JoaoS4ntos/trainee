@@ -14,7 +14,6 @@ class Api::PostController < ApplicationController
     rescue StandardError => e
         render json: e, status: :not_found
     end
-    private
 
     def delete
         post = Post.find(params[:id])
@@ -23,6 +22,10 @@ class Api::PostController < ApplicationController
     rescue StandardError => e
         render json: e, status: :bad_request
     end
+
+    private
+
+    
 
     def post_params
         params.require(:post).permit(:id , :title, :content)
