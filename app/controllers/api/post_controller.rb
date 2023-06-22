@@ -7,6 +7,13 @@ class Api::PostController < ApplicationController
         render json: e, status: :bad_request
     end
 
+    def update
+        post = Post.find(params[:id])
+        post.update!(post_params)
+        render json: post, status: :ok
+    rescue StandardError => e
+        render json: e, status: :not_found
+    end
     private
 
     def post_params
