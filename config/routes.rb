@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   namespace 'api' do
     scope 'post' do
       post 'create', to:'post#create'
