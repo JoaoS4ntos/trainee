@@ -44,3 +44,13 @@ RSpec.describe "Api::Posts", type: :request do
       end
     end
   end
+
+  describe "show/get/:id" do
+    let(:post1) {create(:post, title:"publi")}
+    context "when post exists" do
+      it "return http status ok" do
+        get "/api/post/show/#{post1.id}" 
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
