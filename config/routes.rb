@@ -25,5 +25,8 @@ Rails.application.routes.draw do
       delete 'delete/:id' , to:'category#delete'
       get 'show/:id' , to:'category#show'
     end
+    scope 'users' do
+      get 'login', to: "users#login"
+    end
   end
 end
