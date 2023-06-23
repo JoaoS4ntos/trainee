@@ -11,12 +11,12 @@ class Api::PostController < ApplicationController
 
     def index
         post = Post.all
-        render json: post,status: :ok
+        render json: array_serializer(post),status: :ok
     end
 
     def show 
         post = Post.find(params[:id])
-        render json: post, status: :ok
+        render json: serializer(post), status: :ok
     rescue StandardError => e
         render json: e, status: :not_found
     end
@@ -38,9 +38,13 @@ class Api::PostController < ApplicationController
     end
 
     private
+    def array_serializer(post)
+        Panko::ArraySerializer.new(post, each_serializer: PostSerializer).to_json
+    end 
 
-    
-
+    def serializer(post)
+        PostSerializer.new.serialize_to_json(post)
+    end
     def post_params
         params.require(:post).permit(:id , :title, :content)
     end
