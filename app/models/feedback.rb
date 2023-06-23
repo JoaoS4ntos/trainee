@@ -1,5 +1,3 @@
 class Feedback < ApplicationRecord
-    belongs_to :user
-    has_many :modelplural
-    user:references
+    
 end

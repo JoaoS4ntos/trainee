@@ -1,4 +1,6 @@
 class Api::CommentaryController < ApplicationController
+    acts_as_token_authentication_handler_for User,except: [:show]
+    before_action :admin_authentication , only: [:create,:update,:delete]
     def create
         commentary=Commentary.new(commentary_params)
         commentary.save!

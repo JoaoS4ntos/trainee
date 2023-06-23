@@ -1,4 +1,6 @@
 class Api::FeedbackController < ApplicationController
+    acts_as_token_authentication_handler_for User ,except: [:show]
+    before_action :admin_authentication , only: [:create,:update,:delete]
     def create
         feedbacks=Feedbacks.new(feedbacks_params)
         feedbacks.save!

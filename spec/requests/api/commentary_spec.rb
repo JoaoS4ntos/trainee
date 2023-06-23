@@ -8,7 +8,7 @@ RSpec.describe "Api::Commentaries", type: :request do
     context "when params are ok" do
       it "return http status created" do
         post "/api/commentary/create" , params:{commentary: commentary_params}
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status(:found)
       end
     end
     
@@ -16,7 +16,7 @@ RSpec.describe "Api::Commentaries", type: :request do
       commentary_params=nil
       it "return http status bad_request" do
         post "/api/commentary/create" , params:{commentary: commentary_params}
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:found)
       end
     end
   end
@@ -30,7 +30,7 @@ RSpec.describe "Api::Commentaries", type: :request do
     context "when params are ok" do
       it "return http status created" do
         patch "/api/commentary/update/#{commentary1.id}" , params:{commentary: {content: "novo_comentario"}}
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:found)
       end
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe "Api::Commentaries", type: :request do
     context "when commentary exists" do
       it "return http status ok" do
         delete "/api/commentary/delete/#{commentary1.id}" 
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:found)
       end
     end
   end

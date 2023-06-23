@@ -1,4 +1,6 @@
 class Api::PostController < ApplicationController
+    acts_as_token_authentication_handler_for User , except: [:show]
+    before_action :admin_authentication , only: [:create,:update,:delete]
     def create
         post=Post.new(post_params)
         post.save!

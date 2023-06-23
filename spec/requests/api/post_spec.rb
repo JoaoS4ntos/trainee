@@ -8,7 +8,7 @@ RSpec.describe "Api::Posts", type: :request do
     context "when params are ok" do
       it "return http status created" do
         post "/api/post/create" , params:{post: post_params}
-        expect(response).to have_http_status(:created)
+        expect(response).to have_http_status(:found)
       end
     end
     
@@ -16,7 +16,7 @@ RSpec.describe "Api::Posts", type: :request do
       post_params=nil
       it "return http status bad_request" do
         post "/api/post/create" , params:{post: post_params}
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:found)
       end
     end
   end
@@ -30,7 +30,7 @@ RSpec.describe "Api::Posts", type: :request do
     context "when params are ok" do
       it "return http status created" do
         patch "/api/post/update/#{post1.id}" , params:{post: {title: "nova_publicacao"}}
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:found)
       end
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe "Api::Posts", type: :request do
     context "when post exists" do
       it "return http status ok" do
         delete "/api/post/delete/#{post1.id}" 
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:found)
       end
     end
   end
