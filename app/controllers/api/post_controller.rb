@@ -46,7 +46,7 @@ class Api::PostController < ApplicationController
         PostSerializer.new.serialize_to_json(post)
     end
     def post_params
-        params.require(:post).permit(:id , :title, :content)
+        params.require(:post).permit(:id , :title, :content, :image)
     end
 
     
